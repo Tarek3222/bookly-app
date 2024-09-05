@@ -8,6 +8,7 @@ import 'package:bookly/features/home/presentation/views/widgets/custom_book_card
 import 'package:bookly/features/home/presentation/views/widgets/rating_book.dart';
 import 'package:bookly/features/home/presentation/views/widgets/some_details_about_book.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
 class BookDetailsSection extends StatelessWidget {
@@ -95,10 +96,15 @@ class BookDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        Text(
-          book.volumeInfo?.title ?? "",
-          style: Styles.textStyle30,
-          textAlign: TextAlign.center,
+        GestureDetector(
+          onLongPress: (){
+            Clipboard.setData(ClipboardData(text: book.volumeInfo!.title!));
+          },
+          child: Text(
+            book.volumeInfo?.title ?? "",
+            style: Styles.textStyle30,
+            textAlign: TextAlign.center,
+          ),
         ),
         Text(
           book.volumeInfo?.authors?[0] ?? "",
@@ -140,9 +146,14 @@ class BookDetailsSection extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            book.volumeInfo?.description ?? "",
-            style: Styles.textStyle14.copyWith(color: Colors.white70),
+          child: GestureDetector(
+            onLongPress: (){
+              Clipboard.setData(ClipboardData(text: book.volumeInfo?.description ?? "no description found"));
+            },
+            child: Text(
+              book.volumeInfo?.description ?? "no description found",
+              style: Styles.textStyle14.copyWith(color: Colors.white70),
+            ),
           ),
         ),
       ],
