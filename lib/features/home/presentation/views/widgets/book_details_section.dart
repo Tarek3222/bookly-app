@@ -67,18 +67,26 @@ class BookDetailsSection extends StatelessWidget {
                     book.saleInfo?.saleability == "NOT_FOR_SALE" &&
                     book.accessInfo?.pdf?.acsTokenLink != null) {
                   launchCustomUrl(
-                    context: context,
+                      context: context,
                       url: book.accessInfo!.pdf!.acsTokenLink!,
                       text: "book not avilable to download");
-                }else{
-                  showSnackBar(context: context, text: "Book not avilable to download",color: Colors.red);
+                } else {
+                  showSnackBar(
+                      context: context,
+                      text: "Book not avilable to download",
+                      color: Colors.red);
                 }
               },
-              icon: book.accessInfo!.pdf!.isAvailable! && book.saleInfo?.saleability == "NOT_FOR_SALE" ? Icons.download :Icons.file_download_off_sharp,
+              icon: book.accessInfo!.pdf!.isAvailable! &&
+                      book.saleInfo?.saleability == "NOT_FOR_SALE" &&
+                      book.accessInfo?.pdf?.acsTokenLink != null
+                  ? Icons.download
+                  : Icons.file_download_off_sharp,
             ),
             CustomIconButton(
               onPressed: () {
-                Share.share(book.volumeInfo?.infoLink ?? "book url not found",subject: book.volumeInfo?.title);
+                Share.share(book.volumeInfo?.infoLink ?? "book url not found",
+                    subject: book.volumeInfo?.title);
               },
               icon: Icons.share,
             ),

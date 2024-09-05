@@ -14,7 +14,7 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProviderStateMixin {
  late AnimationController animationController;
  late Animation<Offset> slidingAnimation;
- late Animation<Offset> slidingLoadingAnimation;
+ late Animation<Offset> slidingTextgAnimation;
  @override
   void initState() {
     initSlidingAnimation();
@@ -44,7 +44,7 @@ class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProvide
         const Spacer(
           flex: 2,
         ),
-        SlidingText(slidingAnimation: slidingLoadingAnimation,text: "Read online books for free",),
+        SlidingText(slidingAnimation: slidingTextgAnimation,text: "Read online books for free",),
         const Spacer(
           flex: 1,
         ),
@@ -53,9 +53,8 @@ class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProvide
   }
   void navigateToHome() {
    Future.delayed(
-     const Duration(milliseconds: 2100),
+     const Duration(milliseconds: 2200),
      () {
-      //  Get.to(()=>const HomeView(),transition: Transition.upToDown,duration: kTranstionDuration);
       GoRouter.of(context).pushReplacement(AppRouter.konBoardingView);
      },
    );
@@ -71,7 +70,7 @@ class _SplashViewBodyState extends State<SplashViewBody>with SingleTickerProvide
      end: Offset.zero,
    ).animate(animationController);
    
-    slidingLoadingAnimation=Tween<Offset>(
+    slidingTextgAnimation=Tween<Offset>(
      begin:const Offset(0,10),
      end: Offset.zero ,
    ).animate(animationController);
